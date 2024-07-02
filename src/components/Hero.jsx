@@ -8,17 +8,16 @@ import { HeroBackground } from '@/components/HeroBackground'
 import blurAmberImage from '@/images/blur-amber.png'
 import blurIndigoImage from '@/images/blur-indigo.png'
 
-const codeLanguage = 'rust'
-const code = `#[account(mut)]
-pub payer: Signer<'info>,
-pub publisher: Signer<'info>,
-pub rent: Sysvar<'info, Rent>,
-pub system_program: Program<'info, System>,
-pub token_program: Program<'info, Token>,`
+const codeLanguage = 'c'
+const code = `const std = @import("std");
+
+pub fn main() void {
+    std.debug.print("Hello, World Zig!\\n", .{});
+}`
 
 const tabs = [
-  { name: 'lib.rs', isActive: true },
-  { name: 'Anchor.toml', isActive: false },
+  { name: 'main.zig', isActive: true },
+  { name: 'build.zig', isActive: false },
 ]
 
 export function Hero() {
@@ -43,12 +42,12 @@ export function Hero() {
                 Zig 编程知识库
               </p>
               <p className="mt-3 text-2xl tracking-tight text-slate-400">
-                高性能的公链，支持Rust SDK智能合约开发
+                高性能、通用的编程语言和工具链
               </p>
               <div className="mt-8 flex space-x-4 md:justify-center lg:justify-start">
                 <ButtonLink href="/">快速开始</ButtonLink>
                 <ButtonLink
-                  href="https://github.com/coral-xyz/anchor"
+                  href="https://github.com/hyperter96/zig-docs"
                   variant="secondary"
                 >
                   在GitHub查看

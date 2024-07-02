@@ -15,6 +15,14 @@ import '@/styles/tailwind.css'
 
 const navigation = [
   {
+    title: '快速开始',
+    links: [
+      { title: '简单介绍', href: '/'},
+      { title: '功能特色', href: '/docs/get-started/features' },
+      { title: 'Zig 安装', href: '/docs/get-started/installation' },
+    ],
+  },
+  {
     title: 'References',
     links: [
       { title: 'Account Constraints', href: '/docs/account-constraints' },

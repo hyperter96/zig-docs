@@ -52,7 +52,7 @@ function Header({ navigation }) {
       </div>
       <div className="relative flex basis-0 justify-end space-x-6 sm:space-x-8 md:flex-grow">
         <ThemeSelector className="relative z-10" />
-        <Link href="https://github.com/coral-xyz/anchor">
+        <Link href="https://github.com/hyperter96/zig-docs">
           <a className="group">
             <span className="sr-only">GitHub</span>
             <svg
