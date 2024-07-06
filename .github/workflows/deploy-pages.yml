@@ -51,8 +51,8 @@ jobs:
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        with:
-            static_site_generator: next
+        # with:
+        #     static_site_generator: next
       - name: Restore cache
         uses: actions/cache@v4
         with:
@@ -70,7 +70,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./src/.vuepress/dist
 
   # Deployment job
   deploy:
