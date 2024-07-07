@@ -25,7 +25,7 @@ Minimal reference examples for Anchor account [constraints](https://docs.rs/anch
 
 - [Github](https://github.com/solana-developers/anchor-examples/tree/main/account-constraints/instruction)
   [Solpg](https://beta.solpg.io/https://github.com/solana-developers/anchor-examples/tree/main/account-constraints/instruction)
-- You can access the instruction’s arguments with the #[instruction(..)] attribute.
+- You can access the instruction’s arguments with the `#[instruction(..)]` attribute.
   You have to list them in the same order as in the instruction but you can omit all arguments after the last one you need.
 
 {% /table %}

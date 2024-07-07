@@ -13,9 +13,9 @@ const docSearchConfig = {
 function Hit({ hit, children }) {
   return (
     <Link href={hit.url}>
-      <a>{children}</a>
+      {children}
     </Link>
-  )
+  );
 }
 
 export function Search() {
