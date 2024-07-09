@@ -6,7 +6,7 @@ description: 变量的声明和定义是编程语言中最基础且最常见的�
 
 > 变量的声明和定义是编程语言中最基础且最常见的操作之一。
 
-## 常见变量
+## Common Variables
 
 在 zig 中，我们使用 `var` 来进行变量的声明，格式是 `var variable:type = value;`，以下是一个示例：
 
@@ -28,7 +28,7 @@ pub fn main() void {
 
 {% /callout %}
 
-### 标识符命名
+### Identifier Naming
 
 在 zig 中，**_禁止变量覆盖外部作用域_**！
 
@@ -51,7 +51,7 @@ const Color = enum {
 const color: Color = .@"really red";
 ```
 
-### 常量
+### Constants
 
 zig 使用 const 作为关键字来声明常量，它无法再被更改，只有初次声明时可以赋值。
 
@@ -89,7 +89,7 @@ pub fn main() void {
 
 {% /callout %}
 
-## 块
+## Blocks
 
 块（block）用于限制变量声明的范围，例如以下代码是非法的：
 
@@ -114,7 +114,7 @@ const x = blk: {
 
 上方的 `blk` 是标签名字，它可以是你设置的任何名字。
 
-## 注释
+## Comments
 
 先来看一下在 zig 中如何正确的书写注释，zig 本身支持三种注释方式，分别是普通注释、文档注释、顶层文档注释。
 
