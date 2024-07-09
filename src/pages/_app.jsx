@@ -23,9 +23,9 @@ const navigation = [
     ],
   },
   {
-    title: 'References',
+    title: '核心概念',
     links: [
-      { title: 'Account Constraints', href: '/docs/account-constraints' },
+      { title: '变量声明', href: '/docs/core-concept/assignment' },
     ],
   },
 ]
@@ -82,7 +82,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <PlausibleProvider domain="anchor-lang.com" trackOutboundLinks={true}>
+      <PlausibleProvider domain="hyperter.top" trackOutboundLinks={true}>
         <Head>
           <title>{pageTitle}</title>
           {description && <meta name="description" content={description} />}
@@ -93,7 +93,7 @@ export default function App({ Component, pageProps }) {
           <meta property="og:description" content={description} />
           <meta
             property="og:image"
-            content="https://www.anchor-lang.com/logo.png"
+            content="https://zip.hyperter.top/logo.png"
           />
           <meta property="og:image:width" content="250" />
           <meta property="og:image:height" content="214" />
@@ -104,7 +104,7 @@ export default function App({ Component, pageProps }) {
           <meta name="twitter:description" content={description} />
           <meta
             name="twitter:image"
-            content="https://www.anchor-lang.com/logo.png"
+            content="https://zip.hyperter.top/logo.png"
           />
         </Head>
         <Layout
