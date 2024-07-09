@@ -25,9 +25,17 @@ const navigation = [
   {
     title: '核心概念',
     links: [
+      { title: '高层次概述', href: '/docs/core-concept/high-level-overview'},
       { title: '变量声明', href: '/docs/core-concept/assignment' },
+      { title: '基本类型', href: '/docs/core-concept/basic-type'}
     ],
   },
+  {
+    title: '进阶学习',
+    links: [
+      { title: '类型转换', href: '/docs/advanced/type-cast'},
+    ],
+  }
 ]
 
 function getNodeText(node) {

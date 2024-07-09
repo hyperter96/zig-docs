@@ -10,9 +10,9 @@ Zig 是一种通用的编程语言和工具链，用于维护**健壮**、**最�
 
 {% link-grid-link title="Zig 安装" icon="installation" href="/docs/get-started/installation" description="系统配置以及安装Zig的分步指南" /%}
 
-{% link-grid-link title="Intro to Solana" icon="presets" href="/docs/intro-to-solana" description="Brief intro to programming on Solana." /%}
+{% link-grid-link title="高层次概述" icon="plugins" href="/docs/core-concept/high-level-overview" description="对Zig程序的高层次概述" /%}
 
-{% link-grid-link title="High-Level Overview" icon="plugins" href="/docs/high-level-overview" description="High-Level Overview of an Anchor program." /%}
+{% link-grid-link title="类型转换" icon="presets" href="/docs/advanced/type-cast" description="在进阶学习中，我们将讲解三种类型转换" /%}
 
 {% link-grid-link title="CLI reference" icon="theming" href="/docs/cli" description="A CLI is provided to support building and managing an Anchor workspace." /%}
 
@@ -43,6 +43,6 @@ Zig 是一种通用的编程语言和工具链，用于维护**健壮**、**最�
 逐步改善你的 C/C++/Zig 代码库
 
 - 将 Zig 作为一个零依赖的，支持开箱即用交叉编译的 C/C++ 编译器
-- 利用 zig build在所有平台上创建一个一致的开发环境
+- 利用`zig build`在所有平台上创建一个一致的开发环境
 - 在 C/C++ 项目中添加一个 Zig 编译单元，跨语言 LTO 默认启用
 
