@@ -109,7 +109,7 @@ export function Layout({ children, title, navigation, tableOfContents }) {
         </div>
       </div>
       <div className="min-w-0 max-w-2xl flex-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16">
-        <article>
+        <article class="prose dark:prose-dark light:prose-light">
           {(title || section) && (
             <header className="mb-9 space-y-1">
               {section && (

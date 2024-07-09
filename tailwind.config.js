@@ -1,5 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
-
+const plugin = require('tailwindcss/plugin')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,jsx}'],
@@ -28,7 +28,64 @@ module.exports = {
       maxWidth: {
         '8xl': '88rem',
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
+            },
+            code: {
+              color: theme("colors.red.700"),
+              backgroundColor: theme('colors.stone.650'),
+              wordWrap: 'break-word',
+              boxDecorationBreak: 'clone',
+              padding: '.1rem .3rem .2rem',
+              borderRadius: '.2rem',
+            },
+          },
+        },
+        dark: {
+          css: {
+            code: { 
+              color: theme("colors.amber.100"),
+              backgroundColor: theme('colors.zinc.850'), 
+              wordWrap: 'break-word',
+              boxDecorationBreak: 'clone',
+              padding: '.1rem .3rem .2rem',
+              borderRadius: '.2rem',
+            },
+          },
+        },
+        light: {
+          css: {
+            code: { 
+              color: theme("colors.red.700"),
+              backgroundColor: theme('colors.zinc.800'), 
+              wordWrap: 'break-word',
+              boxDecorationBreak: 'clone',
+              padding: '.1rem .3rem .2rem',
+              borderRadius: '.2rem',
+            },
+          },
+        },
+      }),
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  variants: {
+    extend: {
+      typography: ['light','dark'],
+    },
+  },
+  plugins: [
+    require(`@tailwindcss/typography`),
+    plugin(function ({addVariant}) {
+      addVariant( 
+        'prose-inline-code',
+        '&.prose :where(:not(pre)>code):not(:where([class~="not-prose"] *))'
+      );
+    })
+  ]
 }

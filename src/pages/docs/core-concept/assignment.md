@@ -53,7 +53,7 @@ const color: Color = .@"really red";
 
 ### Constants
 
-zig 使用 const 作为关键字来声明常量，它无法再被更改，只有初次声明时可以赋值。
+zig 使用 `const` 作为关键字来声明常量，它无法再被更改，只有初次声明时可以赋值。
 
 ```c
 const std = @import("std");
