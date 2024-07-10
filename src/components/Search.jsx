@@ -5,9 +5,9 @@ import Router from 'next/router'
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react'
 
 const docSearchConfig = {
-  appId: process.env.NEXT_PUBLIC_DOCSEARCH_APP_ID ? process.env.NEXT_PUBLIC_DOCSEARCH_APP_ID : "PL5G9ZX73V",
-  apiKey: process.env.NEXT_PUBLIC_DOCSEARCH_API_KEY ? process.env.NEXT_PUBLIC_DOCSEARCH_API_KEY : "bc3a570ead434f24c5ecf821992c6089",
-  indexName: process.env.NEXT_PUBLIC_DOCSEARCH_INDEX_NAME ? process.env.NEXT_PUBLIC_DOCSEARCH_INDEX_NAME : "zig-hyperter",
+  appId: process.env.NEXT_PUBLIC_DOCSEARCH_APP_ID,
+  apiKey: process.env.NEXT_PUBLIC_DOCSEARCH_API_KEY,
+  indexName: process.env.NEXT_PUBLIC_DOCSEARCH_INDEX_NAME,
 }
 
 function Hit({ hit, children }) {
