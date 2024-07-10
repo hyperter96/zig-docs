@@ -28,6 +28,18 @@ module.exports = {
       maxWidth: {
         '8xl': '88rem',
       },
+      colors: {
+        fire: {
+          800: '#361912',
+          850: '#2e1610',
+          900: '#24100b',
+        },
+        ghost: {
+          800: '#1c1a40',
+          850: '#170d2e',
+          900: '#12112e',
+        }
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {
