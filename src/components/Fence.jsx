@@ -11,7 +11,7 @@ export function Fence({ children, language }) {
     >
       {({ className, style, tokens, getTokenProps }) => (
         <pre className={className} style={style}>
-          <code>
+          <code className={`language-${language}`}>
             {tokens.map((line, index) => (
               <Fragment key={index}>
                 {line.map((token, index) => (

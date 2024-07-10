@@ -42,6 +42,8 @@ module.exports = {
               backgroundColor: theme('colors.stone.650'),
               wordWrap: 'break-word',
               boxDecorationBreak: 'clone',
+              font: `12px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace`,
+              fontWeight: "lighter",
               padding: '.1rem .3rem .2rem',
               borderRadius: '.2rem',
             },
@@ -51,9 +53,10 @@ module.exports = {
           css: {
             code: { 
               color: theme("colors.amber.100"),
-              backgroundColor: theme('colors.zinc.850'), 
+              backgroundColor: theme('colors.zinc.850'),
               wordWrap: 'break-word',
               boxDecorationBreak: 'clone',
+              fontWeight: "lighter",
               padding: '.1rem .3rem .2rem',
               borderRadius: '.2rem',
             },
