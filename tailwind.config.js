@@ -51,7 +51,7 @@ module.exports = {
             },
             code: {
               color: theme("colors.red.700"),
-              backgroundColor: theme('colors.stone.650'),
+              backgroundColor: theme('colors.zinc.800'),
               wordWrap: 'break-word',
               boxDecorationBreak: 'clone',
               font: `12px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace`,
