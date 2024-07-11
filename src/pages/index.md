@@ -14,7 +14,7 @@ Zig 是一种通用的编程语言和工具链，用于维护**健壮**、**最�
 
 {% link-grid-link title="类型转换" icon="presets" href="/docs/advanced/type-cast" description="在进阶学习中，我们将讲解三种类型转换" /%}
 
-{% link-grid-link title="CLI reference" icon="theming" href="/docs/cli" description="A CLI is provided to support building and managing an Anchor workspace." /%}
+{% link-grid-link title="构建系统" icon="theming" href="/docs/engineering/build-system" description="使用Zig进行构建系统" /%}
 
 {% /link-grid %}
 

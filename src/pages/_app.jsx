@@ -35,6 +35,12 @@ const navigation = [
     links: [
       { title: '类型转换', href: '/docs/advanced/type-cast'},
     ],
+  },
+  {
+    title: '工程化',
+    links: [
+      { title: '构建系统', href: '/docs/engineering/build-system'},
+    ],
   }
 ]
 
