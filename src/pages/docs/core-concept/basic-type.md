@@ -29,7 +29,7 @@ pageTitle: Zig - 基本类型
 |`usize`|`uintptr_t` `size_t`|无符号指针大小的整数|
 |`comptime_int`|无|编译期的整数，整数字面量的类型|
 
-```c
+```zig
 // 下划线可以放在数字之间作为视觉分隔符
 const one_billion = 1_000_000_000;
 const binary_mask = 0b1_1111_1111;
