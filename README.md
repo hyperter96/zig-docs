@@ -1,4 +1,6 @@
-# Anchor Docs
+# Zig Programming Docs
+
+The site is up on [https://zig.hyperter.top](https://zig.hyperter.top).
 
 ## Getting started
 

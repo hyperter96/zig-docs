@@ -1,5 +1,6 @@
 pre[class*='language-'] {
   color: theme('colors.amber.100');
+  /* font: 14px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace; */
 }
 
 .token.tag,
@@ -16,7 +17,7 @@ pre[class*='language-'] {
 .token.rule,
 .token.pseudo-class,
 .token.important {
-  color: theme('colors.red.200');
+  color: theme('colors.violet.200');
 }
 
 .token.module {
