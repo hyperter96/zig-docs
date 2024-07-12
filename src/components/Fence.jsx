@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Highlight, themes } from 'prism-react-renderer';
+import {Highlight, themes, defaultProps } from 'prism-react-renderer';
 
 const LineNo = styled.span`
   display: inline-block;
@@ -13,6 +13,7 @@ export function Fence({ children, language, lineNum }) {
   if (lineNum) {
     return (
       <Highlight
+        {...defaultProps}
         code={children.trimEnd()}
         language={language}
         theme={themes.palenight}
@@ -33,6 +34,7 @@ export function Fence({ children, language, lineNum }) {
   }
   return (
     <Highlight
+      {...defaultProps}
       code={children.trimEnd()}
       language={language}
       theme={themes.palenight}
