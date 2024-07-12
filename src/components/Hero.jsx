@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import Image from 'next/image'
 import clsx from 'clsx'
-import Highlight, { defaultProps } from 'prism-react-renderer'
+import  {Highlight, defaultProps } from 'prism-react-renderer'
 
 import { ButtonLink } from '@/components/Button'
 import { HeroBackground } from '@/components/HeroBackground'
