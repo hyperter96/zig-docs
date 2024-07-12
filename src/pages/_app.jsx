@@ -7,6 +7,7 @@ import {Prism} from 'prism-react-renderer'
 
 require('prismjs/components/prism-rust')
 require('prismjs/components/prism-toml')
+require('prismjs/components/prism-bash')
 require("prismjs/components/prism-zig")
 
 import { Layout } from '@/components/Layout'
