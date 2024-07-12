@@ -1,5 +1,5 @@
 {
-	"index_name": "hyperter96",
+	"index_name": "zig-hyperter",
 	"start_urls": ["https://zig.hyperter.top"],
 	"selectors": {
 	  "lvl0": "",

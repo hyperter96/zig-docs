@@ -21,6 +21,7 @@ const nodes = {
       },
       lineNum: {
         type: Boolean,
+        default: false,
       }
     },
   },

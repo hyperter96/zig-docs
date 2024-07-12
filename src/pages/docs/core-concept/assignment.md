@@ -37,7 +37,7 @@ pub fn main() void {
 
 如果一定要使用不符合这些规定的名称（例如与外部库的链接），那么请使用 `@""` 语法。
 
-```zig
+```zig {% lineNum=true %}
 const @"identifier with spaces in it" = 0xff;
 const @"1SmallStep4Man" = 112358;
 
@@ -57,7 +57,7 @@ const color: Color = .@"really red";
 
 zig 使用 `const` 作为关键字来声明常量，它无法再被更改，只有初次声明时可以赋值。
 
-```zig
+```zig {% lineNum=true %}
 const std = @import("std");
 
 pub fn main() void {
@@ -71,7 +71,7 @@ pub fn main() void {
 
 我们可以使用 `undefined` 使变量保持未初始化状态。
 
-```zig
+```zig {% lineNum=true %}
 const std = @import("std");
 
 pub fn main() void {
