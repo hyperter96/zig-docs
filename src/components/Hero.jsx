@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import clsx from 'clsx'
 import  {Highlight, themes, defaultProps } from 'prism-react-renderer'
 import { ButtonLink } from '@/components/Button'
