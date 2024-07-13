@@ -2,11 +2,11 @@ import { Fragment } from 'react'
 import Image from 'next/image'
 import clsx from 'clsx'
 import  {Highlight, themes, defaultProps } from 'prism-react-renderer'
-
 import { ButtonLink } from '@/components/Button'
 import { HeroBackground } from '@/components/HeroBackground'
 import blurAmberImage from '@/images/blur-amber.png'
 import blurIndigoImage from '@/images/blur-indigo.png'
+import { useRouter } from 'next/router'
 
 const codeLanguage = 'c'
 const code = `const std = @import("std");
@@ -21,6 +21,9 @@ const tabs = [
 ]
 
 export function Hero() {
+  const router = useRouter()
+  let locale = router.locale
+  const hero = require(`../../public/locales/${locale}/hero.json`);
   return (
     <div className="overflow-hidden bg-zinc-900 dark:-mb-32 dark:-mt-[4.5rem] dark:pb-32 dark:pt-[4.5rem] dark:lg:-mt-[4.75rem] dark:lg:pt-[4.75rem]">
       <div className="py-16 sm:px-2 lg:relative lg:py-20 lg:px-0">
@@ -39,18 +42,18 @@ export function Hero() {
             </div>
             <div className="relative">
               <p className="inline bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
-                Zig 编程知识库
+                {hero["title"]}
               </p>
               <p className="mt-3 text-2xl tracking-tight text-slate-400">
-                高性能、通用的编程语言和工具链
+                {hero["description"]}
               </p>
               <div className="mt-8 flex space-x-4 md:justify-center lg:justify-start">
-                <ButtonLink href="/">快速开始</ButtonLink>
+                <ButtonLink href="/">{hero["getStarted"]}</ButtonLink>
                 <ButtonLink
                   href="https://github.com/hyperter96/zig-docs"
                   variant="secondary"
                 >
-                  在GitHub查看
+                  {hero["github"]}
                 </ButtonLink>
               </div>
             </div>

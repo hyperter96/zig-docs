@@ -53,7 +53,7 @@ const themeScript = `
 
 export default function Document() {
   return (
-    <Html className="antialiased [font-feature-settings:'ss01']" lang="en">
+    <Html className="antialiased [font-feature-settings:'ss01']" lang="zh-CN">
       <Head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </Head>

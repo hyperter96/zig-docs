@@ -104,7 +104,7 @@ export function ThemeSelector(props) {
               <>
                 <div className="rounded-md bg-white p-1 shadow ring-1 ring-slate-900/5 dark:bg-zinc-700 dark:ring-inset dark:ring-white/5">
                   <theme.icon
-                    className={clsx('h-4 w-4', {
+                    className={clsx('h-5 w-5', {
                       'fill-amber-400 dark:fill-amber-400': selected,
                       'fill-slate-400': !selected,
                     })}

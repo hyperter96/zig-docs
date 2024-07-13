@@ -1,7 +1,8 @@
 import Head from 'next/head'
+import i18nConfig from "../../i18nConfig"
 import { slugifyWithCounter } from '@sindresorhus/slugify'
 import PlausibleProvider from 'next-plausible'
-
+import { appWithTranslation } from 'next-i18next'
 import {Prism} from 'prism-react-renderer'
 ;(typeof global !== 'undefined' ? global : window).Prism = Prism
 
@@ -83,7 +84,7 @@ function collectHeadings(nodes, slugify = slugifyWithCounter()) {
   return sections
 }
 
-export default function App({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
   let title = pageProps.markdoc?.frontmatter.title
 
   let pageTitle =
@@ -134,3 +135,5 @@ export default function App({ Component, pageProps }) {
     </>
   )
 }
+
+export default App

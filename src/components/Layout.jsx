@@ -10,6 +10,7 @@ import { Navigation } from '@/components/Navigation'
 import { Prose } from '@/components/Prose'
 import { Search } from '@/components/Search'
 import { ThemeSelector } from '@/components/ThemeSelector'
+import { LangSwitcher } from '@/components/LangSwitcher'
 
 function Header({ navigation }) {
   let [isScrolled, setIsScrolled] = useState(false)
@@ -51,6 +52,7 @@ function Header({ navigation }) {
         <Search />
       </div>
       <div className="relative flex basis-0 justify-end space-x-6 sm:space-x-8 md:flex-grow">
+        <LangSwitcher className="relative z-10" />
         <ThemeSelector className="relative z-10" />
         <Link href="https://github.com/hyperter96/zig-docs" className="group">
 
@@ -71,6 +73,8 @@ function Header({ navigation }) {
 
 export function Layout({ children, title, navigation, tableOfContents }) {
   let router = useRouter()
+  let locale = router.locale
+  const hero = require(`../../public/locales/${locale}/hero.json`);
   let isHomePage = router.pathname === '/'
   let allLinks = navigation.flatMap((section) => section.links)
   let linkIndex = allLinks.findIndex((link) => link.href === router.pathname)
@@ -130,7 +134,7 @@ export function Layout({ children, title, navigation, tableOfContents }) {
           {previousPage && (
             <div>
               <dt className="font-display text-sm font-medium text-slate-900 dark:text-white">
-                Previous
+                {hero["previousButton"]}
               </dt>
               <dd className="mt-1">
                 <Link
@@ -145,7 +149,7 @@ export function Layout({ children, title, navigation, tableOfContents }) {
           {nextPage && (
             <div className="ml-auto text-right">
               <dt className="font-display text-sm font-medium text-slate-900 dark:text-white">
-                Next
+                {hero["nextButton"]}
               </dt>
               <dd className="mt-1">
                 <Link
