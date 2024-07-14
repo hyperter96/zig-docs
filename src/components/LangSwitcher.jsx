@@ -42,8 +42,10 @@ function EnIcon(props) {
 }
 
 export function LangSwitcher(props) {
-  let [selectedLang, setSelectedLang] = useState()
-  let router = useRouter()
+  const {pathname, query, asPath, locale} = useRouter()
+  let [selectedLang, setSelectedLang] = useState(langs.filter(function(lang){
+    return lang.value === locale
+  })[0])
   useEffect(() => {
     if (selectedLang) {
       document.documentElement.setAttribute('lang', selectedLang.value)
@@ -72,7 +74,7 @@ export function LangSwitcher(props) {
       </Listbox.Button>
       <Listbox.Options className="absolute top-full left-1/2 mt-3 w-36 -translate-x-1/2 space-y-1 rounded-xl bg-white p-3 text-sm font-medium shadow-md shadow-black/5 ring-1 ring-black/5 dark:bg-zinc-800 dark:ring-white/5">
         {langs.map((lang) => (
-            <Link key={lang.value} href={router.pathname} locale={lang.value}>
+            <Link key={lang.value} href={{pathname, query}} as={asPath} locale={lang.value}>
           <Listbox.Option
             key={lang.value}
             value={lang}

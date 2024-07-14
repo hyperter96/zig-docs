@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import i18nConfig from "../../i18nConfig"
+import {navigationMap} from "../components/utils/global"
 import { slugifyWithCounter } from '@sindresorhus/slugify'
 import PlausibleProvider from 'next-plausible'
 import { appWithTranslation } from 'next-i18next'
@@ -15,37 +16,7 @@ import { Layout } from '@/components/Layout'
 
 import 'focus-visible'
 import '@/styles/tailwind.css'
-
-const navigation = [
-  {
-    title: '快速开始',
-    links: [
-      { title: '简单介绍', href: '/'},
-      { title: '功能特色', href: '/docs/get-started/features' },
-      { title: 'Zig 安装', href: '/docs/get-started/installation' },
-    ],
-  },
-  {
-    title: '核心概念',
-    links: [
-      { title: '高层次概述', href: '/docs/core-concept/high-level-overview'},
-      { title: '变量声明', href: '/docs/core-concept/assignment' },
-      { title: '基本类型', href: '/docs/core-concept/basic-type'}
-    ],
-  },
-  {
-    title: '进阶学习',
-    links: [
-      { title: '类型转换', href: '/docs/advanced/type-cast'},
-    ],
-  },
-  {
-    title: '工程化',
-    links: [
-      { title: '构建系统', href: '/docs/engineering/build-system'},
-    ],
-  }
-]
+import { useRouter } from 'next/router'
 
 function getNodeText(node) {
   let text = ''
@@ -86,7 +57,7 @@ function collectHeadings(nodes, slugify = slugifyWithCounter()) {
 
 const App = ({ Component, pageProps }) => {
   let title = pageProps.markdoc?.frontmatter.title
-
+  const { locale } = useRouter()
   let pageTitle =
     pageProps.markdoc?.frontmatter.pageTitle ||
     `${pageProps.markdoc?.frontmatter.title} - Docs`
@@ -94,7 +65,9 @@ const App = ({ Component, pageProps }) => {
   let description = pageProps.markdoc?.frontmatter.description
 
   let tableOfContents = pageProps.markdoc?.content
-    ? collectHeadings(pageProps.markdoc.content)
+    ? collectHeadings(pageProps.markdoc.content.filter(function(article){
+      return article.attributes.i18n === locale
+    }))
     : []
 
   return (
@@ -125,7 +98,7 @@ const App = ({ Component, pageProps }) => {
           />
         </Head>
         <Layout
-          navigation={navigation}
+          navigation={navigationMap[locale]}
           title={title}
           tableOfContents={tableOfContents}
         >
@@ -136,4 +109,4 @@ const App = ({ Component, pageProps }) => {
   )
 }
 
-export default App
+export default appWithTranslation(App, i18nConfig)

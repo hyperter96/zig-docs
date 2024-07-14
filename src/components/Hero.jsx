@@ -21,8 +21,8 @@ const tabs = [
 ]
 
 export function Hero() {
-  const router = useRouter()
-  let locale = router.locale
+  const { locale } = useRouter()
+
   const hero = require(`../../public/locales/${locale}/hero.json`);
   return (
     <div className="overflow-hidden bg-zinc-900 dark:-mb-32 dark:-mt-[4.5rem] dark:pb-32 dark:pt-[4.5rem] dark:lg:-mt-[4.75rem] dark:lg:pt-[4.75rem]">

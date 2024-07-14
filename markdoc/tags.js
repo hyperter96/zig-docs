@@ -1,6 +1,6 @@
 import { Callout } from '@/components/Callout'
 import { LinkGrid } from '@/components/LinkGrid'
-
+import { Article } from '@/components/Article'
 const tags = {
   callout: {
     attributes: {
@@ -28,6 +28,14 @@ const tags = {
         <figcaption>{caption}</figcaption>
       </figure>
     ),
+  },
+  article: {
+    render: Article,
+    attributes: {
+      i18n: {
+        type: String
+      }
+    }
   },
   'link-grid': {
     render: LinkGrid,

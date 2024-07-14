@@ -72,16 +72,16 @@ function Header({ navigation }) {
 }
 
 export function Layout({ children, title, navigation, tableOfContents }) {
-  let router = useRouter()
-  let locale = router.locale
+  const { locale, pathname } = useRouter()
   const hero = require(`../../public/locales/${locale}/hero.json`);
-  let isHomePage = router.pathname === '/'
+  
+  let isHomePage = pathname === '/'
   let allLinks = navigation.flatMap((section) => section.links)
-  let linkIndex = allLinks.findIndex((link) => link.href === router.pathname)
+  let linkIndex = allLinks.findIndex((link) => link.href === pathname)
   let previousPage = allLinks[linkIndex - 1]
   let nextPage = allLinks[linkIndex + 1]
   let section = navigation.find((section) =>
-    section.links.find((link) => link.href === router.pathname)
+    section.links.find((link) => link.href === pathname)
   )
   let currentSection = useTableOfContents(tableOfContents)
 

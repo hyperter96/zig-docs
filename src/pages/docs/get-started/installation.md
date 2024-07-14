@@ -1,8 +1,11 @@
 ---
-title: Zig 安装
 pageTitle: Zig - 快速安装
 description: 通用的编程语言和工具链.
 ---
+
+{% article i18n="zh-CN" %}
+
+# Zig 安装
 
 ## Mac
 
@@ -42,3 +45,50 @@ Linux 安装的话， 由于发行版的不同，安装的方式五花八门，�
 
 - [marler8997/zigup](https://github.com/marler8997/zigup): Download and manage zig compilers
 - [tristanisham/zvm](https://github.com/tristanisham/zvm): Lets you easily install/upgrade between different versions of Zig
+
+{% /article %}
+
+{% article i18n="en" %}
+
+# Zig Installation
+
+## Mac
+
+It is very convenient to install zig on Mac, but if you want to use `nightly`, you still need to download it and add environment variables yourself.
+
+```bash
+brew install zig
+```
+
+## Linux
+
+For Linux installation, there are many different ways to install Zig due to different distributions. This article first lists the method of installing Zig through the package manager, and then explains how to manually install Zig and set environment variables.
+
+### Install by Package Manager
+
+The following lists the distributions and corresponding commands that support installing Zig through the package manager:
+
+|Linux Release|Command|Remark|
+|:----:|:---:|:---:|
+|Arch Linux|`pacman -S zig`|AUR: zig-dev-bin|
+|Fedora|`dnf install zig`||	
+|Fedora Silverblue|`rpm-ostree install zig`||	
+|Gentoo|`emerge -av dev-lang/zig`|	|
+|NixOS|`nix-env -i zig`||	
+|Ubuntu (snap)|`snap install zig --classic`||	
+|Void Linux|`xbps-install -Su zig`|	|
+
+### Install Manually
+
+Download the corresponding Zig version from the official [release page](https://ziglang.org/zh/download/), and then add the directory containing the Zig binary to the `PATH` environment variable.
+
+## Version Control
+
+Since Zig is still under rapid development and iteration, it is possible that the new version of Zig cannot be compiled when using the existing community libraries. At this time, on the one hand, you can track the upstream progress to see if there is a solution; on the other hand, you can use a fixed version to compile the project, which is obviously more reliable.
+
+So far, there are mainly the following version management tools for Zig:
+
+- [marler8997/zigup](https://github.com/marler8997/zigup): Download and manage zig compilers
+- [tristanisham/zvm](https://github.com/tristanisham/zvm): Lets you easily install/upgrade between different versions of Zig
+
+{% /article %}

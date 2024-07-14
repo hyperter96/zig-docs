@@ -1,8 +1,11 @@
 ---
-title: 功能特色
 pageTitle: Zig - 功能特色
 description: 通用的编程语言和工具链.
 ---
+
+{% article i18n="zh-CN" %}
+
+# 功能特色
 
 ## Why use Zig
 
@@ -28,3 +31,11 @@ description: 通用的编程语言和工具链.
 有几点是非常值得单独拿出来说明一下的：
 
 Zig 会要求你显式传递和管理你的内存，并且编译时就会跟踪你的内存是否发生泄漏， 高明的可选类型（这和 rust 的 `option` 有异曲同工之妙），强大的编译期运行，你可实现很多花哨的操作，而构建系统则被很多 C 项目拿去作为工具链使用。
+
+{% /article %}
+
+{% article i18n="en" %}
+
+# Features
+
+{% /article %}
