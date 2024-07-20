@@ -13,9 +13,10 @@ require('prismjs/components/prism-bash')
 require("prismjs/components/prism-zig")
 
 import { Layout } from '@/components/Layout'
-
+import StyledComponentsRegistry from '@/components/StyleComponentRegistry'
 import 'focus-visible'
 import '@/styles/tailwind.css'
+import "@/styles/scrollBar.css"
 import { useRouter } from 'next/router'
 
 function getNodeText(node) {
@@ -58,17 +59,16 @@ function collectHeadings(nodes, slugify = slugifyWithCounter()) {
 const App = ({ Component, pageProps }) => {
   let title = pageProps.markdoc?.frontmatter.title
   const { locale } = useRouter()
-  let pageTitle =
-    pageProps.markdoc?.frontmatter.pageTitle ||
-    `${pageProps.markdoc?.frontmatter.title} - Docs`
 
   let description = pageProps.markdoc?.frontmatter.description
 
-  let tableOfContents = pageProps.markdoc?.content
-    ? collectHeadings(pageProps.markdoc.content.filter(function(article){
+  let content = pageProps.markdoc?.content
+    ? pageProps.markdoc?.content.filter(function(article){
       return article.attributes.i18n === locale
-    }))
+    })
     : []
+  let tableOfContents = collectHeadings(content)
+  let pageTitle = content.length > 0 ? `${content[0].children[0].children[0]} - Docs` : `Rust - Docs`
 
   return (
     <>
@@ -83,7 +83,7 @@ const App = ({ Component, pageProps }) => {
           <meta property="og:description" content={description} />
           <meta
             property="og:image"
-            content="https://zip.hyperter.top/logo.png"
+            content="https://zip.hyperter.top/logo.svg"
           />
           <meta property="og:image:width" content="250" />
           <meta property="og:image:height" content="214" />
@@ -102,7 +102,9 @@ const App = ({ Component, pageProps }) => {
           title={title}
           tableOfContents={tableOfContents}
         >
-          <Component {...pageProps} />
+          <StyledComponentsRegistry>
+            <Component {...pageProps} />
+          </StyledComponentsRegistry>
         </Layout>
       </PlausibleProvider>
     </>

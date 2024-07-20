@@ -8,7 +8,7 @@ import blurAmberImage from '@/images/blur-amber.png'
 import blurIndigoImage from '@/images/blur-indigo.png'
 import { useRouter } from 'next/router'
 
-const codeLanguage = 'c'
+const codeLanguage = 'zig'
 const code = `const std = @import("std");
 
 pub fn main() void {

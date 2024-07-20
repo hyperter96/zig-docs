@@ -1,11 +1,11 @@
 {% article i18n="zh-CN" %}
 
-# 类型转换
+# 错误处理
 
 {% /article %}
 
 {% article i18n="en" %}
 
-# Casting
+# Error Handle
 
 {% /article %}

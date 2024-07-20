@@ -1,11 +1,11 @@
 {% article i18n="zh-CN" %}
 
-# 类型转换
+# Union类型
 
 {% /article %}
 
 {% article i18n="en" %}
 
-# Casting
+# Union Type
 
 {% /article %}

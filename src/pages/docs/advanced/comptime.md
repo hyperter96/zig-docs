@@ -1,11 +1,11 @@
 {% article i18n="zh-CN" %}
 
-# 类型转换
+# 编译期
 
 {% /article %}
 
 {% article i18n="en" %}
 
-# Casting
+# Comptime
 
 {% /article %}

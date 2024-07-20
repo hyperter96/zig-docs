@@ -1,7 +1,17 @@
 import { Callout } from '@/components/Callout'
 import { LinkGrid } from '@/components/LinkGrid'
 import { Article } from '@/components/Article'
+import { MathFormula, InlineMath } from '@/components/Math'
 const tags = {
+  mathFormula: {
+    attributes: {
+      formula: { type: String },
+    },
+    render: MathFormula,
+  },
+  inlineMath: {
+    render: InlineMath,
+  },
   callout: {
     attributes: {
       title: { type: String },

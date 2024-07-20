@@ -1,8 +1,11 @@
 ---
-title: 变量声明
 pageTitle: Zig - 变量声明
 description: 变量的声明和定义是编程语言中最基础且最常见的操作之一。
 ---
+
+{% article i18n="zh-CN" %}
+
+# 变量声明
 
 > 变量的声明和定义是编程语言中最基础且最常见的操作之一。
 
@@ -81,7 +84,7 @@ pub fn main() void {
     std.debug.print("变量 variable 是{}\n", .{variable});
 }
 ```
-{% callout type="warning" title="提示" %}
+{% callout type="warning" title="注意要点" %}
 
 慎重使用 `undefined`，如果一个变量是未定义的，使用它出现无法预知的情况。
 
@@ -155,3 +158,11 @@ const S = struct {
     //! 顶层文档注释
 };
 ```
+
+{% /article %}
+
+{% article i18n="en" %}
+
+# Assignment
+
+{% /article %}

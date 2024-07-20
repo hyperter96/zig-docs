@@ -1,11 +1,11 @@
 {% article i18n="zh-CN" %}
 
-# 类型转换
+# 内存管理
 
 {% /article %}
 
 {% article i18n="en" %}
 
-# Casting
+# Memory Management
 
 {% /article %}

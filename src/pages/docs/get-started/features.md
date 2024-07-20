@@ -38,4 +38,29 @@ Zig 会要求你显式传递和管理你的内存，并且编译时就会跟踪�
 
 # Features
 
+## Why use Zig
+
+In essence, Zig is a low-level high-level language, which is very similar to C, but improves old problems and provides a complete tool chain, and it optionally supports `libc`.
+
+Everything is mandatory and explicit, which makes code reading easy!
+
+If you are doing embedded development, or have high requirements for speed, and don’t want to use other high-level languages ​​that are too mentally taxing, maybe Zig is suitable for you.
+
+## Features
+
+- Types are first-class citizens
+- No implicit execution
+- Manual memory control, accurate memory leak tracking
+- Complete stack traces (also on bare metal)
+- First-class support for cross-compilation
+- The standard library integrates `libc`, but does not depend on it
+- Optional types replace `null`, see The Worst Mistakes in Computer Science
+- Compile-time (which can be simply regarded as functions executed at compile time) execution to implement generics and reflection
+- C library integration without `FFI/bindings`
+- Very powerful build system
+
+There are a few points that are worth explaining separately:
+
+Zig will require you to explicitly pass and manage your memory, and will track whether your memory leaks at compile time, smart optional types (this is similar to rust's `option`), powerful compile-time operation, you can achieve a lot of fancy operations, and the build system is used as a tool chain by many C projects.
+
 {% /article %}

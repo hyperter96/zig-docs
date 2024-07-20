@@ -7,7 +7,8 @@ import { PluginsIcon } from '@/components/icons/PluginsIcon'
 import { PresetsIcon } from '@/components/icons/PresetsIcon'
 import { ThemingIcon } from '@/components/icons/ThemingIcon'
 import { WarningIcon } from '@/components/icons/WarningIcon'
-
+import { QuestionIcon } from './icons/QuestionIcon'
+import { BookIcon } from './icons/BookIcon'
 const icons = {
   installation: InstallationIcon,
   presets: PresetsIcon,
@@ -15,6 +16,8 @@ const icons = {
   theming: ThemingIcon,
   lightbulb: LightbulbIcon,
   warning: WarningIcon,
+  question: QuestionIcon,
+  book: BookIcon,
 }
 
 const iconStyles = {
@@ -31,6 +34,23 @@ export function Icon({ color = 'orange', icon, className, ...props }) {
     <svg
       aria-hidden="true"
       viewBox="0 0 32 32"
+      fill="none"
+      className={clsx(className, iconStyles[color])}
+      {...props}
+    >
+      <IconComponent id={id} color={color} />
+    </svg>
+  )
+}
+
+export function CustomIcon({ color = 'orange', icon, className, viewBox, ...props }) {
+  let id = useId()
+  let IconComponent = icons[icon]
+
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox={`0 0 ${viewBox} ${viewBox}`}
       fill="none"
       className={clsx(className, iconStyles[color])}
       {...props}
