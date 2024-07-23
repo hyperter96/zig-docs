@@ -19,7 +19,7 @@ export function QuestionIcon({ id, color }) {
         <g>
 	    <path
         strokeLinecap="round" 
-        stroke-linejoin="round"
+        strokeLinejoin="round"
         strokeWidth={1}
         className="fill-[#010002]"
         fillOpacity={0.5}
