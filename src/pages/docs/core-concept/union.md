@@ -55,6 +55,93 @@ const payload = @unionInit(Payload, "int", 666);
 
 {% /callout %}
 
+```zig
+// 一个枚举，用于给联合类型挂上标记
+const ComplexTypeTag = enum {
+    ok,
+    not_ok,
+};
+
+// 带标记的联合类型
+const ComplexType = union(ComplexTypeTag) {
+    ok: u8,
+    not_ok: void,
+};
+
+const c = ComplexType{ .ok = 42 };
+// 可以直接将标记联合类型作为枚举来使用，这是合法的
+try expect(@as(ComplexTypeTag, c) == ComplexTypeTag.ok);
+
+// 使用 switch 进行匹配
+switch (c) {
+    ComplexTypeTag.ok => |value| try expect(value == 42),
+    ComplexTypeTag.not_ok => unreachable,
+}
+
+// 使用 zig 的 meta 库获取对应的 tag
+try expect(std.meta.Tag(ComplexType) == ComplexTypeTag);
+```
+
+如果要修改实际的载荷（即标记联合中的值），你可以使用 `*` 语法捕获指针类型：
+
+```zig
+// 枚举，用于给联合类型打上标记
+const ComplexTypeTag = enum {
+    ok,
+    not_ok,
+};
+
+// 带标记的联合类型
+const ComplexType = union(ComplexTypeTag) {
+    ok: u8,
+    not_ok: void,
+};
+
+var c = ComplexType{ .ok = 42 };
+
+// 使用 switch 进行匹配
+switch (c) {
+    // 捕获了标记联合值的指针，用于修改值
+    ComplexTypeTag.ok => |*value| value.* += 1,
+    ComplexTypeTag.not_ok => unreachable,
+}
+
+try expect(c.ok == 43);
+```
+
+还支持使用 `@tagName` 来获取到对应的 `name`（返回的是一个 `comptime` 的 `[:0]const u8`，也就是字符串）：
+
+```zig
+const Small2 = union(enum) {
+    a: i32,
+    b: bool,
+    c: u8,
+};
+
+const name = @tagName(Small2.a);
+// 这个返回值将会是 a
+```
+
+{% callout type="note" title="提示" %}
+
+上面的 `Small2` 也是一个标记联合类型，不过它的标记是一个匿名的枚举类型，并且该枚举类型成员为：`a`, `b`, `c`。
+
+{% /callout %}
+
+## Auto Infer
+
+zig 也支持自动推断联合类型：
+
+```zig
+const Number = union {
+    int: i32,
+    float: f64,
+};
+
+// 自动推断
+const i: Number = .{ .int = 42 };
+```
+
 {% /article %}
 
 {% article i18n="en" %}

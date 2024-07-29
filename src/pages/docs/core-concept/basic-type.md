@@ -1,7 +1,3 @@
----
-pageTitle: Zig - 基本类型
----
-
 {% article i18n="zh-CN" %}
 
 # 基本类型

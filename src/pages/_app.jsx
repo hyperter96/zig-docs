@@ -34,17 +34,24 @@ function collectHeadings(nodes, slugify = slugifyWithCounter()) {
   let sections = []
 
   for (let node of nodes) {
-    if (/^h[23]$/.test(node.name)) {
+    if (/^h[234]$/.test(node.name)) {
       let title = getNodeText(node)
       if (title) {
         let id = slugify(title)
         node.attributes.id = id
-        if (node.name === 'h3') {
-          sections[sections.length - 1].children.push({
+        if (node.name === 'h4') {
+          let l = sections[sections.length - 1].children.length 
+          sections[sections.length - 1].children[l-1].children.push({
             ...node.attributes,
             title,
           })
-        } else {
+        } else if (node.name === 'h3') {
+          sections[sections.length - 1].children.push({
+            ...node.attributes,
+            title,
+            children: [],
+          })
+        } else if (node.name === 'h2'){
           sections.push({ ...node.attributes, title, children: [] })
         }
       }
