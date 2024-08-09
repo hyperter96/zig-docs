@@ -1,8 +1,8 @@
 {% article i18n="zh-CN" %}
 
-# Union类型
+# Union 类型
 
-联合类型(*union*)，它实际上用户定义的一种特殊的类型，划分出一块内存空间用来存储多种类型，但同一时间只能存储一个类型。
+联合类型(_union_)，它实际上用户定义的一种特殊的类型，划分出一块内存空间用来存储多种类型，但同一时间只能存储一个类型。
 
 ## Basic Use
 
@@ -23,6 +23,7 @@ pub fn main() !void {
     print("{}\n", .{payload.int});
 }
 ```
+
 {% callout type="note" title="提示" %}
 需要注意的是，zig 不保证普通联合类型在内存中的表现形式！如果有需要，可以使用 `extern union` 或者 `packed union` 来保证它遵守 c 的规则。
 
@@ -130,7 +131,7 @@ const name = @tagName(Small2.a);
 
 ## Auto Infer
 
-zig 也支持自动推断联合类型：
+Zig 也支持自动推断联合类型：
 
 ```zig
 const Number = union {

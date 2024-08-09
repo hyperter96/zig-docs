@@ -53,6 +53,7 @@ pub fn main() void {
     }
 }
 ```
+
 在以上的示例中，我们使用了 `for` 循环，来进行矩阵的打印。
 
 ### Sentinel-Terminated Arrays
@@ -69,9 +70,10 @@ pub fn main() void {
     print("哨兵值为: {}\n", .{array[array.len]}); // 0
 }
 ```
+
 {% callout type="note" title="提示" %}
 
-只有在使用Sentinel Termination时，数组才会有索引为数组长度的元素！
+只有在使用 Sentinel Termination 时，数组才会有索引为数组长度的元素！
 
 {% /callout %}
 
@@ -109,11 +111,11 @@ pub fn main() void {
 
 ## String
 
-zig 会将字符串假定为 UTF-8 编码，这是由于 zig 的源文件本身就是 UTF-8 编码的，任何的非 ASCII 字节均会被作为 UTF-8 字符看待。编译器还不会对字节进行修改，因此如果想把非 UTF-8 字节放入字符串中，可以使用转义 `\xNN`。
+Zig 会将字符串假定为 UTF-8 编码，这是由于 zig 的源文件本身就是 UTF-8 编码的，任何的非 ASCII 字节均会被作为 UTF-8 字符看待。编译器还不会对字节进行修改，因此如果想把非 UTF-8 字节放入字符串中，可以使用转义 `\xNN`。
 
 Unicode 码点字面量类型是 `comptime_int`，所有的转义字符均可以在字符串和 Unicode 码点中使用。
 
-为了方便处理 UTF-8 和 Unicode ，zig的标准库 `std.unicode` 中实现了相关的函数来处理它们。
+为了方便处理 UTF-8 和 Unicode ，zig 的标准库 `std.unicode` 中实现了相关的函数来处理它们。
 
 可以参照以下示例：
 
@@ -158,6 +160,7 @@ pub fn main() void {
     print("{s}\n", .{hello_world_in_c});
 }
 ```
+
 ## Initialize Array
 
 ### By Function
@@ -237,7 +240,7 @@ const result: @Vector(4, u32) = @splat(scalar);
 
 `@reduce(comptime op: std.builtin.ReduceOp, value: anytype) E`
 
-使用传入的运算符对向量进行水平按顺序合并（*sequential horizontal reduction*），最终得到一个标量。
+使用传入的运算符对向量进行水平按顺序合并（_sequential horizontal reduction_），最终得到一个标量。
 
 ```zig
 const V = @Vector(4, i32);
@@ -257,11 +260,12 @@ const is_all_true = @reduce(.And, result);
 根据掩码`mask`（一个向量 Vector），返回向量 `a` 或者向量 `b` 的值，组成一个新的向量，`mask`的长度决定返回的向量的长度，并且逐个根据 `mask` 中的值，来从 `a` 或 `b`选出值，正数是从 `a` 选出指定索引的值（从 `0` 开始，变大），负数是从 b 选出指定索引的值（从 `-1` 开始，变小）。
 
 {% callout type="note" title="提示" %}
+
 - 建议对 b 中的索引使用 `~` 运算符，以便两个索引都可以从 0 开始（即 `~@as(i32, 0)` 为 `-1`）。
 - 对于每个 `mask` 挑选出来的元素，如果它从 `A` 或 `B` 中的选出的值是 `undefined`，则结果元素也是 `undefined`。
 - `mask` 中的元素索引越界会产生编译错误。
 - 如果 `a` 或 `b` 是 `undefined`，该变量长度相当于另一个非 `undefined` 变量的长度。如果两个向量均是 `undefined`，则 `@shuffle` 返回所有元素是 `undefined` 的向量
-{% /callout %}
+  {% /callout %}
 
 ```zig
 const a = @Vector(7, u8){ 'o', 'l', 'h', 'e', 'r', 'z', 'w' };
@@ -309,11 +313,11 @@ const c = @select(i32, pred, a, b);
 
 取地址：通过 & 符号来获取某个变量所对应的内存地址，如 &integer 就是获取变量 integer 的内存地址。
 
-zig 的指针和 C 的指针略有不同，包含两种指针，一种单项（*single-item*）指针，一种是多项（*many-item*）指针，它们的解引用的方式也略有不同。
+Zig 的指针和 C 的指针略有不同，包含两种指针，一种单项（_single-item_）指针，一种是多项（_many-item_）指针，它们的解引用的方式也略有不同。
 
-{% callout type="note" title="关于指针运算" %}
+{% callout type="note" title="指针运算" %}
 
-zig 本身支持指针运算（加减操作），但有一点需要注意：最好将指针分配给 `[*]T` 类型后再进行计算。
+Zig 本身支持指针运算（加减操作），但有一点需要注意：最好将指针分配给 `[*]T` 类型后再进行计算。
 
 尤其是在切片中，不可直接对其指针进行更改，这会破坏切片的内部结构！
 {% /callout %}
@@ -378,6 +382,7 @@ pub fn main() !void {
     print("第一个元素：{}\n", .{ptr[0]});
 }
 ```
+
 {% /callout %}
 
 #### Sentinel Pointer
@@ -399,6 +404,7 @@ pub fn main() anyerror!void {
     _ = printf("Hello, world!\n"); // OK
 }
 ```
+
 以上代码编译需要额外连接 `libc` ，你只需要在你的 `build.zig` 中添加 `exe.linkLibC();` 即可。
 {% /callout %}
 
@@ -414,19 +420,27 @@ pub fn main() anyerror!void {
 - 解释
 
 ---
+
 - `[4] const u8`
 - 该类型代表的是一个长度为 `4` 的数组，数组内的元素类型为 `const u8`
 
 ---
+
 - `[] const u8`
 - 该类型代表的是一个切片，切片内元素类型为 `const u8`
+
 ---
+
 - `*[4] const u8`
 - 该类型代表的是一个指针，它指向一个内存地址，内存中该地址存储着一个长度为 `4` 的数组，数组内的元素类型为 `const u8`
+
 ---
+
 - `*[] const u8`
 - 该类型代表的是一个指针，它指向一个内存地址，内存中该地址存储着一个切片
+
 ---
+
 - `[*] const u8`
 - 该类型代表的是一个指针，它指向一个内存地址，内存中该地址存储着一个数组，但长度未知！
 
@@ -438,7 +452,7 @@ pub fn main() anyerror!void {
 
 #### volatile
 
-对指针的操作应假定为没有副作用。如果存在副作用，例如使用内存映射输入输出（*Memory Mapped Input/Output*），则需要使用 `volatile` 关键字来修饰。
+对指针的操作应假定为没有副作用。如果存在副作用，例如使用内存映射输入输出（_Memory Mapped Input/Output_），则需要使用 `volatile` 关键字来修饰。
 
 在以下代码中，保证使用 `mmio_ptr` 的值进行操作（这里你看起来可能会感到迷惑，在编译代码时，编译器可以能会让值在实际运行过程中进行缓存，这里保证每次都使用 `mmio_ptr` 的值，以避免无法正确触发 “副作用”），并保证了代码执行的顺序。
 
@@ -523,11 +537,12 @@ pub fn main() !void {
     try expect(@TypeOf(&noop4) == *align(4) const fn () void);
 }
 ```
+
 {% /callout %}
 
 #### Zero Pointer
 
-零指针实际上是一个未定义的错误行为（*Pointer Cast Invalid Null*），但是当我们给指针增加上 `allowzero` 修饰符后，它就变成合法的行为了！
+零指针实际上是一个未定义的错误行为（_Pointer Cast Invalid Null_），但是当我们给指针增加上 `allowzero` 修饰符后，它就变成合法的行为了！
 
 {% callout type="note" title="零指针的使用" %}
 
@@ -632,6 +647,7 @@ var slice: []i32 = array[0..len];
 print("slice.ptr 类型为{}\n", .{@TypeOf(slice.ptr)});
 print("slice 的索引 0 取地址，得到指针类型为{}\n", .{@TypeOf(&slice[0])});
 ```
+
 打印结果如下：
 
 ```text
@@ -639,7 +655,7 @@ slice.ptr 类型为[*]i32
 slice 的索引 0 取地址，得到指针类型为*i32
 ```
 
-### Sentinel Slices 
+### Sentinel Slices
 
 语法 `[:x]T` 是一个切片，它具有运行时已知的长度，并且还保证由该长度索引的元素的标记值。该类型不保证在此之前不存在哨兵元素，哨兵终止的切片允许元素访问 `len` 索引。
 
@@ -720,6 +736,7 @@ const TT = struct {
     }
 };
 ```
+
 {% /article %}
 
 {% article i18n="en" %}

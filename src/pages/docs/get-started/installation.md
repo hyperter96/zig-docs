@@ -23,15 +23,15 @@ Linux 安装的话， 由于发行版的不同，安装的方式五花八门，�
 
 以下列出了支持通过包管理器安装 Zig 的发行版和对应命令：
 
-|发行版|命令|备注|
-|:----:|:---:|:---:|
-|Arch Linux|`pacman -S zig`|AUR: zig-dev-bin|
-|Fedora|`dnf install zig`||	
-|Fedora Silverblue|`rpm-ostree install zig`||	
-|Gentoo|`emerge -av dev-lang/zig`|	|
-|NixOS|`nix-env -i zig`||	
-|Ubuntu (snap)|`snap install zig --classic`||	
-|Void Linux|`xbps-install -Su zig`|	|
+|      发行版       |             命令             |       备注       |
+| :---------------: | :--------------------------: | :--------------: |
+|    Arch Linux     |       `pacman -S zig`        | AUR: zig-dev-bin |
+|      Fedora       |      `dnf install zig`       |                  |
+| Fedora Silverblue |   `rpm-ostree install zig`   |                  |
+|      Gentoo       |  `emerge -av dev-lang/zig`   |                  |
+|       NixOS       |       `nix-env -i zig`       |                  |
+|   Ubuntu (snap)   | `snap install zig --classic` |                  |
+|    Void Linux     |    `xbps-install -Su zig`    |                  |
 
 ### Install Manually
 
@@ -68,15 +68,15 @@ For Linux installation, there are many different ways to install Zig due to diff
 
 The following lists the distributions and corresponding commands that support installing Zig through the package manager:
 
-|Linux Release|Command|Remark|
-|:----:|:---:|:---:|
-|Arch Linux|`pacman -S zig`|AUR: zig-dev-bin|
-|Fedora|`dnf install zig`||	
-|Fedora Silverblue|`rpm-ostree install zig`||	
-|Gentoo|`emerge -av dev-lang/zig`|	|
-|NixOS|`nix-env -i zig`||	
-|Ubuntu (snap)|`snap install zig --classic`||	
-|Void Linux|`xbps-install -Su zig`|	|
+|   Linux Release   |           Command            |      Remark      |
+| :---------------: | :--------------------------: | :--------------: |
+|    Arch Linux     |       `pacman -S zig`        | AUR: zig-dev-bin |
+|      Fedora       |      `dnf install zig`       |                  |
+| Fedora Silverblue |   `rpm-ostree install zig`   |                  |
+|      Gentoo       |  `emerge -av dev-lang/zig`   |                  |
+|       NixOS       |       `nix-env -i zig`       |                  |
+|   Ubuntu (snap)   | `snap install zig --classic` |                  |
+|    Void Linux     |    `xbps-install -Su zig`    |                  |
 
 ### Install Manually
 

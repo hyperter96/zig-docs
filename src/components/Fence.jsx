@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import {Highlight, themes, defaultProps } from 'prism-react-renderer';
+import styled from 'styled-components'
+import { Highlight, themes, defaultProps } from 'prism-react-renderer'
 
 const LineNo = styled.span`
   display: inline-block;
@@ -7,7 +7,6 @@ const LineNo = styled.span`
   user-select: none;
   opacity: 0.5;
 `
-
 
 export function Fence({ children, language, lineNum }) {
   if (lineNum) {
@@ -22,11 +21,12 @@ export function Fence({ children, language, lineNum }) {
           <pre className={className} style={style}>
             {tokens.map((line, i) => (
               <div key={i} {...getLineProps({ line })}>
-              <LineNo>{i + 1}</LineNo>
-              {line.map((token, key) => <span key={key} {...getTokenProps({ token })} />)}
+                <LineNo>{i + 1}</LineNo>
+                {line.map((token, key) => (
+                  <span key={key} {...getTokenProps({ token })} />
+                ))}
               </div>
-            )            
-            )}
+            ))}
           </pre>
         )}
       </Highlight>
@@ -43,10 +43,11 @@ export function Fence({ children, language, lineNum }) {
         <pre className={className} style={style}>
           {tokens.map((line, i) => (
             <div key={i} {...getLineProps({ line })}>
-            {line.map((token, key) => <span key={key} {...getTokenProps({ token })} />)}
+              {line.map((token, key) => (
+                <span key={key} {...getTokenProps({ token })} />
+              ))}
             </div>
-          )            
-          )}
+          ))}
         </pre>
       )}
     </Highlight>

@@ -1,7 +1,3 @@
----
-pageTitle: Zig - 构建系统
----
-
 {% article i18n="zh-CN" %}
 
 # 构建系统

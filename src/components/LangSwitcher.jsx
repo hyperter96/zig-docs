@@ -42,18 +42,19 @@ function EnIcon(props) {
 }
 
 export function LangSwitcher(props) {
-  const {pathname, query, asPath, locale} = useRouter()
-  let [selectedLang, setSelectedLang] = useState(langs.filter(function(lang){
-    return lang.value === locale
-  })[0])
+  const { pathname, query, asPath, locale } = useRouter()
+  let [selectedLang, setSelectedLang] = useState(
+    langs.filter(function (lang) {
+      return lang.value === locale
+    })[0]
+  )
   useEffect(() => {
     if (selectedLang) {
       document.documentElement.setAttribute('lang', selectedLang.value)
     } else {
       setSelectedLang(
         langs.find(
-          (lang) =>
-            lang.value === document.documentElement.getAttribute('lang')
+          (lang) => lang.value === document.documentElement.getAttribute('lang')
         )
       )
     }
@@ -72,39 +73,43 @@ export function LangSwitcher(props) {
         <ZhCnIcon className="hidden h-4 w-4 fill-amber-400 [[lang=zh-CN]_&]:block" />
         <EnIcon className="hidden h-4 w-4 fill-amber-400 [[lang=en]_&]:block" />
       </Listbox.Button>
-      <Listbox.Options className="absolute top-full left-1/2 mt-3 w-36 -translate-x-1/2 space-y-1 rounded-xl bg-white p-3 text-sm font-medium shadow-md shadow-black/5 ring-1 ring-black/5 dark:bg-zinc-800 dark:ring-white/5">
+      <Listbox.Options className="absolute left-1/2 top-full mt-3 w-36 -translate-x-1/2 space-y-1 rounded-xl bg-white p-3 text-sm font-medium shadow-md shadow-black/5 ring-1 ring-black/5 dark:bg-zinc-800 dark:ring-white/5">
         {langs.map((lang) => (
-            <Link key={lang.value} href={{pathname, query}} as={asPath} locale={lang.value}>
-          <Listbox.Option
+          <Link
             key={lang.value}
-            value={lang}
-            className={({ active, selected }) =>
-              clsx(
-                'flex cursor-pointer select-none items-center rounded-[0.625rem] p-1',
-                {
-                  'text-amber-500': selected,
-                  'text-slate-900 dark:text-white': active && !selected,
-                  'text-slate-700 dark:text-slate-400': !active && !selected,
-                  'bg-zinc-100 dark:bg-zinc-900/40': active,
-                }
-              )
-            }
+            href={{ pathname, query }}
+            as={asPath}
+            locale={lang.value}
           >
-            {({ selected }) => (
-              <>
-                <div className="rounded-md bg-white p-1 shadow ring-1 ring-slate-900/5 dark:bg-zinc-700 dark:ring-inset dark:ring-white/5">
-        
-                  <lang.icon
-                    className={clsx('h-5 w-5', {
-                      'fill-amber-400 dark:fill-amber-400': selected,
-                      'fill-slate-400': !selected,
-                    })}
-                  />
-                </div>
-                <div className="ml-3">{lang.name}</div>
-              </>
-            )}
-          </Listbox.Option>
+            <Listbox.Option
+              key={lang.value}
+              value={lang}
+              className={({ active, selected }) =>
+                clsx(
+                  'flex cursor-pointer select-none items-center rounded-[0.625rem] p-1',
+                  {
+                    'text-amber-500': selected,
+                    'text-slate-900 dark:text-white': active && !selected,
+                    'text-slate-700 dark:text-slate-400': !active && !selected,
+                    'bg-zinc-100 dark:bg-zinc-900/40': active,
+                  }
+                )
+              }
+            >
+              {({ selected }) => (
+                <>
+                  <div className="rounded-md bg-white p-1 shadow ring-1 ring-slate-900/5 dark:bg-zinc-700 dark:ring-inset dark:ring-white/5">
+                    <lang.icon
+                      className={clsx('h-5 w-5', {
+                        'fill-amber-400 dark:fill-amber-400': selected,
+                        'fill-slate-400': !selected,
+                      })}
+                    />
+                  </div>
+                  <div className="ml-3">{lang.name}</div>
+                </>
+              )}
+            </Listbox.Option>
           </Link>
         ))}
       </Listbox.Options>

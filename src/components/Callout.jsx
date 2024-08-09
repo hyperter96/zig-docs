@@ -31,7 +31,9 @@ const styles = {
 
 const icons = {
   note: (props) => <Icon icon="lightbulb" {...props} />,
-  question: (props) => <CustomIcon icon="question" viewBox={27.116} {...props} />,
+  question: (props) => (
+    <CustomIcon icon="question" viewBox={27.116} {...props} />
+  ),
   book: (props) => <CustomIcon icon="book" viewBox={24} {...props} />,
   warning: (props) => <Icon icon="warning" color="amber" {...props} />,
 }
@@ -40,17 +42,19 @@ export function Callout({ type = 'note', title, children }) {
   let IconComponent = icons[type]
 
   return (
-    <div className={clsx('my-4 flex-auto rounded-xl p-5', styles[type].container)}>
+    <div
+      className={clsx('my-4 flex-auto rounded-xl p-5', styles[type].container)}
+    >
       <div className="flex">
         <IconComponent className="h-8 w-8 flex-none" />
         <div className="ml-2 flex-auto">
           <p className={clsx('m-0 font-display text-base', styles[type].title)}>
             {title}
-          </p>       
+          </p>
         </div>
       </div>
-      <div className={clsx('prose mt-2.5 mx-4 text-sm', styles[type].body)}>
-          {children}
+      <div className={clsx('prose mx-4 mt-2.5 text-sm', styles[type].body)}>
+        {children}
       </div>
     </div>
   )

@@ -18,15 +18,15 @@ const nextConfig = withMarkdoc()({
 
   webpack: (config, { isServer }) => {
     if (!isServer) {
-        config.resolve = {
-            ...config.resolve,
-            fallback: {
-                fs: false,
-            },
-        };
+      config.resolve = {
+        ...config.resolve,
+        fallback: {
+          fs: false,
+        },
+      }
     }
-    return config;
-},
+    return config
+  },
   partialBundledLanguages: isBrowser && true,
 })
 

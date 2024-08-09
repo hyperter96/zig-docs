@@ -4,7 +4,7 @@
 
 ## Primitive Types
 
-> 数值类型是语言运行时的基本类型，当它编译为机器码时，其中包含着许多的 CPU运算器 的操作指令。
+> 数值类型是语言运行时的基本类型，当它编译为机器码时，其中包含着许多的 CPU 运算器 的操作指令。
 
 ### Integer
 
@@ -12,21 +12,21 @@
 
 在 zig 中，对整数的类型划分很详细，以下是类型表格：
 
-|类型|对应C类型|描述|
-|:----:|:--------:|:----:|
-|`i8`|`int8_t`|有符号`8`位整数|
-| `u8`|`uint8_t`|无符号`8`位整数|
-|`i16`|`int16_t`|有符号`16`位整数|
-|`u16`|`uint16_t`|无符号`16`位整数|
-|`i32`|`int32_t`|有符号`32`位整数|
-|`u32`|`uint32_t`|无符号`32`位整数|
-|`i64`|`int64_t`|有符号`64`位整数|
-|`u64`|`uint64_t`|无符号`64`位整数|
-|`i128`|`__int128`|有符号`128`位整数|
-|`u128`|`unsigned __int128`|无符号`128`位整数|
-|`isize`|`intptr_t`|有符号指针大小的整数|
-|`usize`|`uintptr_t` `size_t`|无符号指针大小的整数|
-|`comptime_int`|无|编译期的整数，整数字面量的类型|
+|      类型      |     对应 C 类型      |              描述              |
+| :------------: | :------------------: | :----------------------------: |
+|      `i8`      |       `int8_t`       |        有符号`8`位整数         |
+|      `u8`      |      `uint8_t`       |        无符号`8`位整数         |
+|     `i16`      |      `int16_t`       |        有符号`16`位整数        |
+|     `u16`      |      `uint16_t`      |        无符号`16`位整数        |
+|     `i32`      |      `int32_t`       |        有符号`32`位整数        |
+|     `u32`      |      `uint32_t`      |        无符号`32`位整数        |
+|     `i64`      |      `int64_t`       |        有符号`64`位整数        |
+|     `u64`      |      `uint64_t`      |        无符号`64`位整数        |
+|     `i128`     |      `__int128`      |       有符号`128`位整数        |
+|     `u128`     | `unsigned __int128`  |       无符号`128`位整数        |
+|    `isize`     |      `intptr_t`      |      有符号指针大小的整数      |
+|    `usize`     | `uintptr_t` `size_t` |      无符号指针大小的整数      |
+| `comptime_int` |          无          | 编译期的整数，整数字面量的类型 |
 
 ```zig
 // 下划线可以放在数字之间作为视觉分隔符
@@ -36,7 +36,7 @@ const permissions = 0o7_5_5;
 const big_address = 0xFF80_0000_0000_0000;
 ```
 
-同时 zig 支持任意位宽的整数，使用 `u` 或者 `i` 后面加数字即可，例如 `i7` 代表有符号的7位整数，整数类型允许的最大位宽为`65535`。
+同时 zig 支持任意位宽的整数，使用 `u` 或者 `i` 后面加数字即可，例如 `i7` 代表有符号的 7 位整数，整数类型允许的最大位宽为`65535`。
 
 {% callout type="note" title="提示" %}
 
@@ -46,7 +46,7 @@ const big_address = 0xFF80_0000_0000_0000;
 
 #### Divided by Zero
 
-zig 编译器对于除零的处理是分别在编译期和运行时（除 `ReleaseSmall` 构建模式外）进行检测，编译时检测出错误则直接停止编译，运行时如果出错会给出完整的堆栈跟踪。(这里的“除零”包括了 *除法* 和 *求余* 两种操作)
+Zig 编译器对于除零的处理是分别在编译期和运行时（除 `ReleaseSmall` 构建模式外）进行检测，编译时检测出错误则直接停止编译，运行时如果出错会给出完整的堆栈跟踪。(这里的“除零”包括了 _除法_ 和 _求余_ 两种操作)
 
 ```zig
 comptime {
@@ -78,6 +78,7 @@ pub fn main() void {
     std.debug.print("value: {}\n", .{c});
 }
 ```
+
 构建，
 
 ```bash
@@ -110,7 +111,6 @@ zig 中，有以下默认操作可以导致溢出：
 - `@divFloor`（除法）
 - `@divExact`（除法）
 
-
 还有在标准库 `@import("std").math` 中的函数可能导致溢出发生。
 
 在编译期和运行时也分别有类似“除零”操作的检测和堆栈跟踪。
@@ -137,11 +137,11 @@ zig 中，有以下默认操作可以导致溢出：
 
 ### Float
 
-浮点数就是表示带有小数点的数字。在 zig 中，浮点数有 `f16`、`f32`、`f64`、`f80`、`f128`、`c_longdouble`（对应C ABI的 `long double` ）。
+浮点数就是表示带有小数点的数字。在 zig 中，浮点数有 `f16`、`f32`、`f64`、`f80`、`f128`、`c_longdouble`（对应 C ABI 的 `long double` ）。
 
 值得注意的是，`comptime_float` 具有 `f128` 的精度和运算。
 
-浮点字面量可以隐式转换为 任意浮点类型，如果没有小数部分的话还能够隐式转换为 *任意整数类型* 。
+浮点字面量可以隐式转换为 任意浮点类型，如果没有小数部分的话还能够隐式转换为 _任意整数类型_ 。
 
 浮点运算时遵循 `Strict` 模式，但是可以使用 `@setFloatMode(.Optimized)` 切换到 `Optimized` 模式，有关浮点运算的模式，详见 `@setFloatMode`。
 
@@ -156,6 +156,7 @@ const inf = std.math.inf(f32);
 const negative_inf = -std.math.inf(f64);
 const nan = std.math.nan(f128);
 ```
+
 {% /callout %}
 
 ### Operation
@@ -232,21 +233,21 @@ print("(1 + 2i) * (1 - 2i) = ({d:.1},{d:.1})\n", .{ z4.re, z4.im });
 
 In zig, the types of integers are divided very detailed. The following is the type table:
 
-|Type|Corresponding C type|Description|
-|:----:|:--------:|:----:|
-|`i8`|`int8_t`|Signed `8`-bit integer|
-| `u8`|`uint8_t`|Unsigned `8`-bit integer|
-|`i16`|`int16_t`|Signed `16`-bit integer|
-|`u16`|`uint16_t`|Unsigned `16`-bit integer|
-|`i32`|`int32_t`|Signed `32`-bit integer|
-|`u32`|`uint32_t`|Unsigned `32`-bit integer|
-|`i64`|`int64_t`|Signed `64`-bit integer|
-|`u64`|`uint64_t`|Unsigned `64`-bit integer|
-|`i128`|`__int128`|Signed `128`-bit integer|
-|`u128`|`unsigned __int128`|unsigned `128`-bit integer|
-|`isize`|`intptr_t`|signed pointer-sized integer|
-|`usize`|`uintptr_t` `size_t`|unsigned pointer-sized integer|
-|`comptime_int`|none|compile-time integer, type of integer literal|
+|      Type      | Corresponding C type |                  Description                  |
+| :------------: | :------------------: | :-------------------------------------------: |
+|      `i8`      |       `int8_t`       |            Signed `8`-bit integer             |
+|      `u8`      |      `uint8_t`       |           Unsigned `8`-bit integer            |
+|     `i16`      |      `int16_t`       |            Signed `16`-bit integer            |
+|     `u16`      |      `uint16_t`      |           Unsigned `16`-bit integer           |
+|     `i32`      |      `int32_t`       |            Signed `32`-bit integer            |
+|     `u32`      |      `uint32_t`      |           Unsigned `32`-bit integer           |
+|     `i64`      |      `int64_t`       |            Signed `64`-bit integer            |
+|     `u64`      |      `uint64_t`      |           Unsigned `64`-bit integer           |
+|     `i128`     |      `__int128`      |           Signed `128`-bit integer            |
+|     `u128`     | `unsigned __int128`  |          unsigned `128`-bit integer           |
+|    `isize`     |      `intptr_t`      |         signed pointer-sized integer          |
+|    `usize`     | `uintptr_t` `size_t` |        unsigned pointer-sized integer         |
+| `comptime_int` |         none         | compile-time integer, type of integer literal |
 
 ```zig
 // Underscores can be placed between numbers as visual separators

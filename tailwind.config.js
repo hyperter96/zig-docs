@@ -38,7 +38,7 @@ module.exports = {
           800: '#1c1a40',
           850: '#170d2e',
           900: '#12112e',
-        }
+        },
       },
       typography: (theme) => ({
         DEFAULT: {
@@ -50,12 +50,12 @@ module.exports = {
               content: '""',
             },
             code: {
-              color: theme("colors.red.700"),
+              color: theme('colors.red.700'),
               backgroundColor: theme('colors.zinc.800'),
               wordWrap: 'break-word',
               boxDecorationBreak: 'clone',
               font: `12px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace`,
-              fontWeight: "lighter",
+              fontWeight: 'lighter',
               padding: '.1rem .3rem .2rem',
               borderRadius: '.2rem',
             },
@@ -63,12 +63,12 @@ module.exports = {
         },
         dark: {
           css: {
-            code: { 
-              color: theme("colors.amber.100"),
+            code: {
+              color: theme('colors.amber.100'),
               backgroundColor: theme('colors.zinc.850'),
               wordWrap: 'break-word',
               boxDecorationBreak: 'clone',
-              fontWeight: "lighter",
+              fontWeight: 'lighter',
               padding: '.1rem .3rem .2rem',
               borderRadius: '.2rem',
             },
@@ -76,9 +76,9 @@ module.exports = {
         },
         light: {
           css: {
-            code: { 
-              color: theme("colors.red.700"),
-              backgroundColor: theme('colors.zinc.800'), 
+            code: {
+              color: theme('colors.red.700'),
+              backgroundColor: theme('colors.zinc.800'),
               wordWrap: 'break-word',
               boxDecorationBreak: 'clone',
               padding: '.1rem .3rem .2rem',
@@ -91,16 +91,16 @@ module.exports = {
   },
   variants: {
     extend: {
-      typography: ['light','dark'],
+      typography: ['light', 'dark'],
     },
   },
   plugins: [
     require(`@tailwindcss/typography`),
-    plugin(function ({addVariant}) {
-      addVariant( 
+    plugin(function ({ addVariant }) {
+      addVariant(
         'prose-inline-code',
         '&.prose :where(:not(pre)>code):not(:where([class~="not-prose"] *))'
-      );
-    })
-  ]
+      )
+    }),
+  ],
 }

@@ -1,22 +1,22 @@
 import Head from 'next/head'
-import i18nConfig from "../../i18nConfig"
-import {navigationMap} from "../components/utils/global"
+import i18nConfig from '../../i18nConfig'
+import { navigationMap } from '../components/utils/global'
 import { slugifyWithCounter } from '@sindresorhus/slugify'
 import PlausibleProvider from 'next-plausible'
 import { appWithTranslation } from 'next-i18next'
-import {Prism} from 'prism-react-renderer'
+import { Prism } from 'prism-react-renderer'
 ;(typeof global !== 'undefined' ? global : window).Prism = Prism
 
 require('prismjs/components/prism-rust')
 require('prismjs/components/prism-toml')
 require('prismjs/components/prism-bash')
-require("prismjs/components/prism-zig")
+require('prismjs/components/prism-zig')
 
 import { Layout } from '@/components/Layout'
 import StyledComponentsRegistry from '@/components/StyleComponentRegistry'
 import 'focus-visible'
 import '@/styles/tailwind.css'
-import "@/styles/scrollBar.css"
+import '@/styles/scrollBar.css'
 import { useRouter } from 'next/router'
 
 function getNodeText(node) {
@@ -40,8 +40,8 @@ function collectHeadings(nodes, slugify = slugifyWithCounter()) {
         let id = slugify(title)
         node.attributes.id = id
         if (node.name === 'h4') {
-          let l = sections[sections.length - 1].children.length 
-          sections[sections.length - 1].children[l-1].children.push({
+          let l = sections[sections.length - 1].children.length
+          sections[sections.length - 1].children[l - 1].children.push({
             ...node.attributes,
             title,
           })
@@ -51,7 +51,7 @@ function collectHeadings(nodes, slugify = slugifyWithCounter()) {
             title,
             children: [],
           })
-        } else if (node.name === 'h2'){
+        } else if (node.name === 'h2') {
           sections.push({ ...node.attributes, title, children: [] })
         }
       }
@@ -70,12 +70,15 @@ const App = ({ Component, pageProps }) => {
   let description = pageProps.markdoc?.frontmatter.description
 
   let content = pageProps.markdoc?.content
-    ? pageProps.markdoc?.content.filter(function(article){
-      return article.attributes.i18n === locale
-    })
+    ? pageProps.markdoc?.content.filter(function (article) {
+        return article.attributes.i18n === locale
+      })
     : []
   let tableOfContents = collectHeadings(content)
-  let pageTitle = content.length > 0 ? `${content[0].children[0].children[0]} - Docs` : `Rust - Docs`
+  let pageTitle =
+    content.length > 0
+      ? `${content[0].children[0].children[0]} - Docs`
+      : `Zig - Docs`
 
   return (
     <>

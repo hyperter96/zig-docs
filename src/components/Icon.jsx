@@ -21,7 +21,8 @@ const icons = {
 }
 
 const iconStyles = {
-  orange: '[--icon-foreground:theme(colors.slate.900)] [--icon-background:theme(colors.white)]',
+  orange:
+    '[--icon-foreground:theme(colors.slate.900)] [--icon-background:theme(colors.white)]',
   amber:
     '[--icon-foreground:theme(colors.amber.900)] [--icon-background:theme(colors.amber.100)]',
 }
@@ -43,7 +44,13 @@ export function Icon({ color = 'orange', icon, className, ...props }) {
   )
 }
 
-export function CustomIcon({ color = 'orange', icon, className, viewBox, ...props }) {
+export function CustomIcon({
+  color = 'orange',
+  icon,
+  className,
+  viewBox,
+  ...props
+}) {
   let id = useId()
   let IconComponent = icons[icon]
 

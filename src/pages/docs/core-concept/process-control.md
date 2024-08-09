@@ -39,7 +39,7 @@ if (demo == Small.one) {
 
 ### Ternary Expression
 
-zig 中的三元表达式是通过 `if else` 来实现的：
+Zig 中的三元表达式是通过 `if else` 来实现的：
 
 ```zig
 const a: u32 = 5;
@@ -66,6 +66,7 @@ if (val) |real_b| {
     try expect(true);
 }
 ```
+
 以上代码的 `else` 分支并非必要，我们结构后获得 `real_b` 就是 `u32` 类型，但是注意我们获得的捕获是只读的！
 
 如果我们想操纵值的内容，可以选择捕获对应的指针：
@@ -85,7 +86,7 @@ if (c) |*value| {
 
 ```zig
 const val: anyerror!u32 = 0;
-if (val) |value| {
+i (val) |value| {
     try expect(value == 0);
 } else |err| {
     _ = err;
@@ -113,6 +114,7 @@ if (val) |*value| {
     unreachable;
 }
 ```
+
 {% callout type="warning" title="提示" %}
 那么 `if` 是如何解构 错误联合可选类型 的呢？
 
@@ -126,6 +128,7 @@ if (a) |optional_value| {
     _ = err;
 }
 ```
+
 以上代码中的 `optional_value` 就是可选类型 `?u32`，我们可以在内部继续使用 `if` 来解构它。
 
 在错误联合可选类型上也可以使用指针捕获：
@@ -144,8 +147,166 @@ if (d) |*optional_value| {
 以上代码中，`*optional_value` 捕获的是可选类型的指针，我们在内部尝试解引用后再一次捕获指针来进行操作。
 {% /callout %}
 
-{% /article %}
+## Loops
 
+在 zig 中，循环分为两种，一种是 `while`，一种是 `for`。
+
+### `for`
+
+`for` 循环是另一种循环处理方式，主要用于迭代数组和切片。
+
+它支持 `continue` 和 `break`。
+
+迭代数组和切片：
+
+```zig
+const items = [_]i32{ 4, 5, 3, 4, 0 };
+var sum: i32 = 0;
+
+for (items) |value| {
+    if (value == 0) {
+        continue;
+    }
+    sum += value;
+}
+```
+
+以上代码中的 `value`，我们称之为对 数组（切片）迭代的值捕获，注意它是只读的。
+
+在迭代时操作数组（切片）：
+
+```zig
+var items = [_]i32{ 3, 4, 2 };
+
+for (&items) |*value| {
+    value.* += 1;
+}
+```
+
+以上代码中的 value 是一个指针，我们称之为对 数组（切片）迭代的指针捕获，注意它也是只读的，不过我们可以通过借引用指针来操作数组（切片）的值。
+
+#### Iterate on Numbers
+
+迭代连续的整数很简单，以下是示例：
+
+```zig
+for (0..5) |i| {
+    _ = i;
+    // do something
+}
+```
+
+#### Iterate on Indices
+
+如果你想在迭代数组（切片）时，也可以访问索引，可以这样做：
+
+```zig
+const items = [_]i32{ 4, 5, 3, 4, 0 };
+for (items, 0..) |value, i| {
+    _ = value;
+    _ = i;
+    // do something
+}
+```
+
+以上代码中，其中 `value` 是值，而 `i` 是索引。
+
+#### Multi-objective Iteration
+
+当然，你也可以同时迭代多个目标（数组或者切片），当然这两个迭代的目标要长度一致防止出现未定义的行为。
+
+```zig
+const items = [_]usize{ 1, 2, 3 };
+const items2 = [_]usize{ 4, 5, 6 };
+
+for (items, items2) |i, j| {
+    _ = i;
+    _ = j;
+    // do something
+}
+```
+
+#### Use as an Expression
+
+当然，`for` 也可以作为表达式来使用，它的行为和 `while` 一模一样。
+
+```zig
+const items = [_]?i32{ 3, 4, null, 5 };
+
+const result = for (items) |value| {
+    if (value == 5) {
+        break value;
+    }
+} else 0;
+```
+
+#### Mark
+
+`continue` 的效果类似于 `goto`，并不推荐使用，因为它和 `goto` 一样难以把控，以下示例中，`outer` 就是标记。
+
+`break` 的效果就是在标记处的 `while` 执行 `break` 操作，当然，同样不推荐使用。
+
+它们只会增加你的代码复杂性，非必要不使用！
+
+```zig
+var count: usize = 0;
+outer: for (1..6) |_| {
+    for (1..6) |_| {
+        count += 1;
+        break :outer;
+    }
+}
+```
+
+#### inline
+
+`inline` 关键字会将 `for` 循环展开，这允许代码执行一些一些仅在编译时有效的操作。
+
+需要注意，内联 `for` 循环要求迭代的值和捕获的值均是编译期已知的。
+
+```zig
+pub fn main() !void {
+    const nums = [_]i32{ 2, 4, 6 };
+    var sum: usize = 0;
+    inline for (nums) |i| {
+        const T = switch (i) {
+            2 => f32,
+            4 => i8,
+            6 => bool,
+            else => unreachable,
+        };
+        sum += typeNameLength(T);
+    }
+    try expect(sum == 9);
+}
+
+fn typeNameLength(comptime T: type) usize {
+    return @typeName(T).len;
+}
+```
+
+### `While`
+
+`while` 循环用于重复执行表达式，直到某些条件不再成立.
+
+基本使用：
+
+```zig
+var i: usize = 0;
+while (i < 10) {
+    if (i == 5) {
+        continue;
+    }
+    std.debug.print("i is {}\n", .{i});
+    i += 1;
+}
+```
+
+#### `continue` Expression
+
+`while` 还支持一个被称为 `continue` 表达式的方法来便于我们控制循环，其内部可以是一个语句或者是一个作用域（`{}` 包裹）
+
+{% /article %}
 
 {% article i18n="en" %}
 
