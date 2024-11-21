@@ -248,6 +248,10 @@ const result = for (items) |value| {
 
 它们只会增加你的代码复杂性，非必要不使用！
 
+{% tabs %}
+
+{% tab label="break" %}
+
 ```zig
 var count: usize = 0;
 outer: for (1..6) |_| {
@@ -257,6 +261,23 @@ outer: for (1..6) |_| {
     }
 }
 ```
+{% /tab %}
+
+{% tab label="continue" %}
+
+```zig
+var count: usize = 0;
+outer: for (1..9) |_| {
+    for (1..6) |_| {
+        count += 1;
+        continue :outer;
+    }
+}
+```
+
+{% /tab %}
+
+{% /tabs %}
 
 #### inline
 
@@ -305,6 +326,127 @@ while (i < 10) {
 #### `continue` Expression
 
 `while` 还支持一个被称为 `continue` 表达式的方法来便于我们控制循环，其内部可以是一个语句或者是一个作用域（`{}` 包裹）
+
+单语句：
+```zig
+var i: usize = 0;
+while (i < 10) : (i += 1) {}
+```
+
+多语句：
+```zig
+var i: usize = 1;
+var j: usize = 1;
+while (i * j < 2000) : ({
+    i *= 2;
+    j *= 3;
+}) {}
+```
+
+#### Use as an Expression
+
+Zig 还允许我们将 `while` 作为表达式来使用，此时需要搭配 `else` 和 `break`。
+
+这里的 `else` 是当 `while` 循环结束并且没有经过 `break` 返回值时触发，而 `break` 则类似于`return`，可以在 `while` 内部返回值。
+
+```zig
+fn rangeHasNumber(begin: usize, end: usize, number: usize) bool {
+    var i = begin;
+    return while (i < end) : (i += 1) {
+        if (i == number) {
+            break true;
+        }
+    } else false;
+}
+```
+#### Mark
+
+`continue` 的效果类似于 `goto`，并不推荐使用，因为它和 `goto` 一样难以把控，以下示例中，`outer` 就是标记。
+
+`break` 的效果就是在标记处的 `while` 执行 `break` 操作，当然，同样不推荐使用。
+
+对于`continue`:
+
+```zig
+var i: usize = 0;
+outer: while (i < 10) : (i += 1) {
+    while (true) {
+        continue :outer;
+    }
+}
+```
+
+对于`break`:
+```zig
+outer: while (true) {
+    while (true) {
+        break :outer;
+    }
+}
+```
+
+#### inline
+
+`inline` 关键字会将 `while` 循环展开，这允许代码执行一些一些仅在编译时有效的操作。
+
+```zig
+pub fn main() !void {
+    comptime var i = 0;
+    var sum: usize = 0;
+    inline while (i < 3) : (i += 1) {
+        const T = switch (i) {
+            0 => f32,
+            1 => i8,
+            2 => bool,
+            else => unreachable,
+        };
+        sum += typeNameLength(T);
+    }
+    try expect(sum == 9);
+}
+
+fn typeNameLength(comptime T: type) usize {
+    return @typeName(T).len;
+}
+```
+
+{% callout type="note" title="提示" %}
+
+建议以下情况使用内联 `while`：
+
+- 需要在编译期执行循环
+- 你确定展开后会代码效率会更高
+
+{% /callout %}
+
+#### Destructuring Optional Type
+
+像 `if` 一样，`while` 也会尝试解构可选类型，并在遇到 `null` 时终止循环。
+
+```zig
+while (eventuallyNullSequence()) |value| {
+    sum2 += value;
+} else {
+    std.debug.print("meet a null\n", .{});
+}
+// 还可以使用else分支，碰到第一个 null 时触发并退出循环
+```
+
+当 `|x|` 语法出现在 `while` 表达式上，`while` 条件必须是可选类型。
+
+#### Destructuring Error Union Type
+
+和上面类似，同样可以解构错误联合类型，`while` 分别会捕获错误和有效负载，当错误发生时，转到 `else` 分支执行，并退出：
+
+```zig
+while (eventuallyErrorSequence()) |value| {
+    sum1 += value;
+} else |err| {
+    std.debug.print("meet a err: {}\n", .{err});
+}
+```
+
+当 `else |x|` 时语法出现在 `while` 表达式上，`while` 条件必须是错误联合类型。
 
 {% /article %}
 

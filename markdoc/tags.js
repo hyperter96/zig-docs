@@ -2,6 +2,32 @@ import { Callout } from '@/components/Callout'
 import { LinkGrid } from '@/components/LinkGrid'
 import { Article } from '@/components/Article'
 import { MathFormula, InlineMath } from '@/components/Math'
+import { Tag } from '@markdoc/markdoc';
+import { Tab } from '@/components/Tab'
+import { Tabs } from '@/components/Tabs'
+
+const tabs = {
+  render: Tabs,
+  attributes: {},
+  transform(node, config) {
+    const labels = node
+      .transformChildren(config)
+      .filter((child) => child && child.name === 'Tab')
+      .map((tab) => (typeof tab === 'object' ? tab.attributes.label : null));
+
+    return new Tag(this.render, { labels }, node.transformChildren(config));
+  }
+};
+
+const tab = {
+  render: Tab,
+  attributes: {
+    label: {
+      type: String
+    }
+  }
+};
+
 const tags = {
   mathFormula: {
     attributes: {
@@ -60,6 +86,8 @@ const tags = {
       href: { type: String },
     },
   },
+  tabs,
+  tab,
 }
 
 export default tags

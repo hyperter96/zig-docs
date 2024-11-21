@@ -85,9 +85,9 @@ Focus on debugging your application rather than debugging your programming langu
 
 A fresh approach to metaprogramming based on compile-time code execution and lazy evaluation.
 
-Call any function at compile-time.
-Manipulate types as values without runtime overhead.
-Comptime emulates the target architecture.
+- Call any function at compile-time.
+- Manipulate types as values without runtime overhead.
+- Comptime emulates the target architecture.
 
 ⚡ **Maintain it with Zig**
 

@@ -265,7 +265,8 @@ const is_all_true = @reduce(.And, result);
 - 对于每个 `mask` 挑选出来的元素，如果它从 `A` 或 `B` 中的选出的值是 `undefined`，则结果元素也是 `undefined`。
 - `mask` 中的元素索引越界会产生编译错误。
 - 如果 `a` 或 `b` 是 `undefined`，该变量长度相当于另一个非 `undefined` 变量的长度。如果两个向量均是 `undefined`，则 `@shuffle` 返回所有元素是 `undefined` 的向量
-  {% /callout %}
+
+{% /callout %}
 
 ```zig
 const a = @Vector(7, u8){ 'o', 'l', 'h', 'e', 'r', 'z', 'w' };
